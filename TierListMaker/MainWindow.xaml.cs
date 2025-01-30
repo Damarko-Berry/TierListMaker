@@ -150,6 +150,7 @@ namespace TierListMaker
         private void Screenschot_Click(object sender, RoutedEventArgs e)
         {
             Directory.CreateDirectory("Lists");
+            var SSpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),"Tier List Maker", $"{Uniname.Text}.png");
             SaveScreenshot(view, Path.Combine("Lists",$"{Uniname.Text}.png"));
         }
         private void SaveScreenshot(FrameworkElement element, string filename)
