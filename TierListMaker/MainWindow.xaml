@@ -11,7 +11,7 @@
         <StackPanel >
             <StackPanel Name="view" Background="#FF0E0E0E">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBox x:Name="Uniname" Text="Tier List" Background="{x:Null}" BorderThickness="0" FontSize="24" BorderBrush="{x:Null}" Foreground="White"/>
+                    <TextBox x:Name="Uniname" Text="Tier List" Background="{x:Null}" BorderThickness="0" FontSize="24" BorderBrush="{x:Null}" MinWidth="200" TextAlignment="Center" Foreground="White"/>
                 </StackPanel>
             </StackPanel>
             <WrapPanel Name="ItemList" MinWidth="200" Margin="10" PreviewMouseLeftButtonDown="ItemList_PreviewMouseLeftButtonDown"/>

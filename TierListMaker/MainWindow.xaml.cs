@@ -141,6 +141,10 @@ namespace TierListMaker
             {
                 view.Children.Add(new Tier(tier));
             }
+            foreach (var item in progress.NotDecided)
+            {
+                ItemList.Children.Add(new TierItem(item));
+            }
             CorrectColors();
         }
         private void Screenschot_Click(object sender, RoutedEventArgs e)
@@ -215,9 +219,30 @@ namespace TierListMaker
             if (!ofd.ShowDialog().Value) return;
             try
             {
+                var GG = GetAllTiers();
                 var jsonString = File.ReadAllText(ofd.FileName);
                 Progress deserializedProgress = JsonSerializer.Deserialize<Progress>(jsonString);
-                LoadToList(deserializedProgress);
+                for (int i = 0; i < deserializedProgress.Tiers.Length; i++)
+                {
+                    bool found = false;
+                    for (int j = 0; j < GG.Length; j++)
+                    {
+                        if (GG[j].GetData().Title == deserializedProgress.Tiers[i].Title)
+                        {
+                            found = true;
+                            GG[j].Add(deserializedProgress.Tiers[i].GetBitmaps());  
+                        }
+                    }
+                    if(!found)
+                    {
+                        var nT = new Tier(deserializedProgress.Tiers[i]);
+                        view.Children.Add(nT);
+                    }
+                }
+                foreach (var item in progress.NotDecided)
+                {
+                    ItemList.Children.Add(new TierItem(item));
+                }
             }
             catch (Exception ex)
             {

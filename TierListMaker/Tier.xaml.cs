@@ -86,7 +86,17 @@ namespace TierListMaker
                 //ItemList.Children.Remove(item);
             }
         }
-
+        public void Add(Bitmap bitmap)
+        {
+            TierPanel.Children.Add(new TierItem(bitmap));
+        }
+        public void Add(Bitmap[] bitmaps)
+        {
+            foreach (var bitmap in bitmaps)
+            {
+                Add(bitmap);
+            }
+        }
 
         public TierData GetData()
         {
