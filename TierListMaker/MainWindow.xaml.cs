@@ -109,6 +109,7 @@ namespace TierListMaker
             
             ofd.Filter="textfiles|*.json";
             ofd.Multiselect = false;
+            ofd.InitialDirectory = Path.Combine(Directory.GetCurrentDirectory(),"Data");
             if (!ofd.ShowDialog().Value) return;
             clear();
             try
