@@ -36,8 +36,10 @@ namespace TierListMaker
         public MainWindow()
         {
             InitializeComponent();
+            Directory.CreateDirectory("Data");
             Instance = this;
             LoadToList(Progress.Default);
+            
         }
         private void Window_Drop(object sender, DragEventArgs e)
         {
@@ -266,7 +268,7 @@ namespace TierListMaker
         }
         public void AddTier_Click(object sender, RoutedEventArgs e)
         {
-            var nT = new Tier();
+            var nT = new Tier(new(MainWindow.Instance.GetNextTierName(), new Bitmap[0]));
             view.Children.Add(nT);
             CorrectColors();
         }
@@ -327,6 +329,20 @@ namespace TierListMaker
                 fileName = fileName.Replace(c, '_');
             }
             return fileName;
+        }
+        public string GetNextTierName()
+        {
+            char[] chars = "SABCDEFGHIJKLMNOPQRTUVWXYZ".ToCharArray();
+            var v = GetAllTiers().Length;
+            if (v < chars.Length)
+            {
+                return chars[v].ToString();
+            }
+            else
+            {
+                var remainder = v % chars.Length;
+                return $"Tier  {(v / chars.Length + 1)}{chars[remainder]}";
+            }
         }
     }
 }

@@ -110,11 +110,12 @@ namespace TierListMaker
         private void additem_Click(object sender, RoutedEventArgs e)
         {
             var view = MainWindow.Instance.view.Children;
+            TierData NewData = new(MainWindow.Instance.GetNextTierName(), new Bitmap[0]);
             for (int i = 0; i < view.Count; i++)
             {
                 if (view[i] == this)
                 {
-                    MainWindow.Instance.Insert_tier(new Tier(), i + 1);
+                    MainWindow.Instance.Insert_tier(new Tier(NewData), i + 1);
                     return;
                 }
             }
